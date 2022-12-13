@@ -2,7 +2,6 @@ library(Seurat)
 library(tidyverse)
 library(scExtras)
 library(clustree)
-source('~/dsdata/lungmap/bin/PaperPlotFunctions.R')
 
 outdir <- 'Integrate'
 dir.create(outdir)
