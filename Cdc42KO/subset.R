@@ -2,7 +2,6 @@ library(Seurat)
 library(tidyverse)
 library(scExtras)
 library(clustree)
-source('~/dsdata/lungmap/bin/PaperPlotFunctions.R')
 
 outdir <- 'Integrate'
 dir.create(outdir)
@@ -18,7 +17,6 @@ d1
 DefaultAssay(all) <- 'RNA'
 
 
-#scrna <- subset(all, subset= (Lamp3 > 2 | Hopx>2) & Foxj1 < 1 & Mgp < 1)
 scrna <- subset(all, idents = c(0,2,3,4))%>% subset(subset = nCount_RNA>1000)
 
 
@@ -77,8 +75,6 @@ dge <- map(tests,function(c){
 )
 
 writexl::write_xlsx(dge,paste0(outdir,'/DiffGeneExpress_subset.xlsx'))
-
-
 
 
 
