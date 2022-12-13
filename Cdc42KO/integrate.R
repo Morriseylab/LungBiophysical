@@ -48,36 +48,7 @@ scrna <- FindClusters(scrna, resolution = 0.3)
 
 scrna <- PrepSCTFindMarkers(scrna)
 
-
-genes <- c('Hopx','Lamp3','Lyz1','Cldn4','Scgb1a1','Krt8','Foxj1','Malat1','hybrid_score')
-
-DefaultAssay(scrna) <- 'SCT'
-
-f1 <- FeaturePlot(scrna,genes, order=T) * coord_equal() * theme_void() * NoLegend()
-d1 <- DimPlot(scrna,label = T,cols=cpallette,label.size = 8,repel = T) + theme_void() + coord_equal()
-b <- sampleBarGraph(scrna,group.by = 'seurat_clusters',col = c('red','blue')) + ylab('% Cells')
-#loadded from lungmap Paperfunctions code
-s1 <- samplePlot(scrna,colorpal =c('red','blue'),nrow = 2)
-(d1/s1)|(f1/b)
-
-ggsave(paste0(plotdir,'Overplot1.png'),width = 12,height = 12)
-
-genes2 <- c('Hopx','Foxj1','Sftpc','Sftpb','Lamp3','Lyz1')
-
-v1 <- VlnPlot(scrna, genes2,split.by = 'sample',cols =  c('red','blue'))
-
-(d1|s1)/v1 
-ggsave(paste0(plotdir,'Overplot2.png'),width = 12,height = 12)
-
-scrna
-scrna@misc$findallmarkers <- FindAllMarkers(scrna,assay = 'SCT',only.pos = T)
-
-d2 <- DimPlot(scrna, group.by = 'Phase') + theme_void() + coord_equal()
-v2 <- VlnPlot(scrna, c('Pcna','Mki67','Top2a','Mcm6'),split.by = 'sample',cols =  c('red','blue'))
-(d1|d2)/v2
-ggsave(paste0('~/dsdata/projects/Morrisey/Kazu/ligation/Integrate/Overviewplot_CCgenes.png'),width = 12,height = 12)
-
-saveRDS(scrna,'~/dsdata/projects/Morrisey/Kazu/ligation/Integrate/Seurat.RDS')
+saveRDS(scrna,'Seurat.RDS')
 
 
 
