@@ -12,7 +12,7 @@ plotdir <- paste0(outdir,'/PaperPlots/')
 dir.create(plotdir)
 
 
-scrna <- readRDS("~/dsdata/projects/Morrisey/Kazu/Cdc42KO/Integrate/Seurat_subset.RDS")
+scrna <- readRDS("Seurat_subset.RDS")
 
 scrna$cellcolorsl1 <-  plyr::mapvalues(scrna$celltypel1_sample,
                                        c('AT1_Cdc42KO','AT1_wt','AT2_Cdc42KO','AT2_wt'), 
